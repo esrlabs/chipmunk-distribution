@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install 
+	
+	# Set up the directory structure
+	mkdir -p debian/chipmunk/usr/bin
+	mkdir -p debian/chipmunk/usr/lib/chipmunk
+	
+	# Copy chipmunk release
+	cp -r chipmunk debian/chipmunk/usr/lib/chipmunk
+
+	# Create a sym link
+	sudo ln -s /usr/lib/chipmunk/chipmunk /usr/bin/chipmunk
+
+

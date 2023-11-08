@@ -1,0 +1,6 @@
+chipmunk for Debian
+
+Chipmunk is a fast logfile viewer that can deal with huge logfiles (>10 GB). It powers a super fast search and is supposed to be a useful tool for developers who have to analyze logfiles.is a fast logfile viewer that can deal with huge logfiles (>10 GB). It powers a super fast search and is supposed to be a useful tool for developers who have to analyze logfiles.
+
+
+ -- alfr <alexandru.frincu@accenture.com>  Thu, 26 Oct 2023 16:01:30 +0300
