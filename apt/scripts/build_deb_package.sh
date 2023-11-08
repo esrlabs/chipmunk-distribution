@@ -1,39 +1,40 @@
 #!/bin/bash
 
-# Prompt the user for confirmation
-read -r -p "You're about to execute some commands as root. Are you sure you want to continue? (y/n): " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo "Executing package build steps ..."
-else
-    echo "Aborted installation. Chipmunk package will not be installed."
-fi
-
-# Check if an argument is provided
-if [ -z "$1" ]; then
-    echo "Please provide the destination path as an argument to build_package script."
+# Check if the script is being run with sudo
+if [[ $EUID -ne 0 ]]; then
+    echo "Requested operation requires superuser privilege and needs to be run with sudo. Please use: sudo $0" 1>&2
     exit 1
 fi
 
-destination_folder="$1"
+if [ -z "$1" ]; then
+    read -p "Enter the destination folder path: " destination_folder
+
+    if [ ! -d "$destination_folder" ]; then
+        echo "The specified destination folder does not exist. Please provide a valid path."
+        exit 1
+    fi
+else
+    destination_folder="$1"
+fi
+
+ echo "Destination folder is set to: $destination_folder"
 
 # Navigate one directory up because
 # dpkg-buildpackage needs to open file debian/changelog
 cd ..
 
 # Check if chipmunk package is installed
-if dpkg -l | grep -q chipmunk; then
+if dpkg-query -l chipmunk; then
     echo "Chipmunk package is installed. Removing it ..."
-    sudo dpkg -r chipmunk
+    dpkg -r chipmunk
 else
     echo "Chipmunk package is not installed."
 fi
 
-# Check if old chipmunk exists
+# remove any old leftovers of chipmunk before builduing new package
 if [ -L /usr/bin/chipmunk ]; then
-		echo "Removing existing version of chipmunk"
-		sudo rm /usr/bin/chipmunk
+		rm /usr/bin/chipmunk
 fi
-
 
 # Build the package
 dpkg-buildpackage -b

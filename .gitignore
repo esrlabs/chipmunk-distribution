@@ -2,3 +2,5 @@ apt/chipmunk/*
 apt/debian/chipmunk*
 apt/debian/.debhelper/*
 apt/package/*
+package/*
+
