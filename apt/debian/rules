@@ -14,6 +14,6 @@ override_dh_auto_install:
 	cp -r chipmunk debian/chipmunk/usr/lib/chipmunk
 
 	# Create a sym link
-	sudo ln -s /usr/lib/chipmunk/chipmunk /usr/bin/chipmunk
+	ln -s /usr/lib/chipmunk/chipmunk /usr/bin/chipmunk
 
 
