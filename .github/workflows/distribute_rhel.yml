@@ -1,0 +1,10 @@
+name: Distribute Chipmunk on chocolatey
+run-name: chipmunk package creation and publish on chocolatey
+on: [push]
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Package and publish
+      run: ./distribute_to_rpm.sh

@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>chipmunk</id>
-    <version>3.9.22</version>
+    <version>1.0.0</version>
     <packageSourceUrl>https://github.com/itsmesamster/chipmunk-distribution/tree/chocolatey/chocolatey_win</packageSourceUrl>
     <owners>Dmitry Astafyev, esrlabs</owners>
     <title>chipmunk (Install)</title>
     <authors>Dmitry Astafyev, Oliver Mueller</authors>
     <projectUrl>https://github.com/esrlabs/chipmunk</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/esrlabs/chipmunk/master/application/holder/resources/icons/ico/icon.ico</iconUrl>
+    <licenseUrl>https://github.com/esrlabs/chipmunk/blob/master/LICENSE.txt</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/esrlabs/chipmunk/master/application/holder/resources/icons/png/icon.png</iconUrl>
     <projectSourceUrl>https://github.com/esrlabs/chipmunk/tree/master</projectSourceUrl>
     <docsUrl>https://github.com/esrlabs/chipmunk/blob/master/application/client/src/assets/documentation/about.md</docsUrl>
     <tags>chipmunk search logstash logger logging logviewer logs-analysis</tags>
     <summary>chipmunk is a fast logfile viewer that can deal with huge logfiles (>10 GB). It powers a super fast search and is supposed to be a useful tool for developers who have to analyze logfiles.</summary>
     <description>chipmunk is a fast logfile viewer that can deal with huge logfiles (>10 GB). It powers a super fast search and is supposed to be a useful tool for developers who have to analyze logfiles.</description>
+    <releaseNotes>https://github.com/esrlabs/chipmunk/releases</releaseNotes>
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
     <file src="tools\**" target="tools" />
   </files>
 </package>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
