@@ -1,16 +1,18 @@
-﻿$ErrorActionPreference = 'Stop';
-#if( -not ( get-command Install-ChocolateyPackage -erroraction silentlycontinue ) ) {
-#    Import-Module C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1
-#}
+$ErrorActionPreference = 'Stop';
 
 $packageName= 'chipmunk'
-$version	= '3.9.22'
-$zipname	= "chipmunk@$version-win64-portable"
-$toolsDir	= "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$url_chipmunk = 'https://github.com/esrlabs/chipmunk/releases/latest'
+$request = [System.Net.WebRequest]::Create($url_chipmunk)
+$response = $request.GetResponse()
+$realTagUrl = $response.ResponseUri.OriginalString
+$version = $realTagUrl.split('/')[-1].Trim('v')
+
+$zipname = "chipmunk@$version-win64-portable"
+$toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $url        = "https://github.com/esrlabs/chipmunk/releases/download/$version/chipmunk@$version-win64-portable.tgz"
-$shortcut	= "$env:ChocolateyInstall\bin\chipmunk.exe"
+$shortcut = "$env:ChocolateyInstall\bin\chipmunk.exe"
 $DesktopPath= [Environment]::GetFolderPath("Desktop")
-$exe		= "$DesktopPath\chipmunk.lnk"
+$exe = "$DesktopPath\chipmunk.lnk"
 
 $packageArgs = @{
   packageName   = $packageName
