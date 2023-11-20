@@ -10,10 +10,16 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Create RPM package
-        run:  ./distribute_to_rpm.sh
+        shell: bash-wrapper {0}
+        run: |
+          bash distribute_to_rpm.sh
 
       - name: Push RPM package to chipmunk assets
-        run:  ./rpm_rhel/push_to_chipmunk_assets.sh
+        shell: bash-wrapper {0}
+        run: |
+          bash rpm_rhel/push_to_chipmunk_assets.sh
 
       - name: Create and publish repo to yum
-        run:  ./rpm_rhel/publish_repo.sh
+        shell: bash-wrapper {0}
+        run: |
+          bash rpm_rhel/publish_repo.sh
