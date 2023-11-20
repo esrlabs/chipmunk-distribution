@@ -1,11 +1,10 @@
 name: Distribute Chipmunk on chocolatey
 run-name: chipmunk package creation and publish on chocolatey
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
-  distribute:
+  build:
     runs-on: windows-latest
     steps:
-
-    - name: Package and publish
-      run: pwsh .\distribute_to_chocolatey.ps1 -publish
+      - name: Package and publish
+        run: pwsh .\distribute_to_chocolatey.ps1 -publish
