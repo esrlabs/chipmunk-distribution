@@ -1,10 +1,16 @@
-name: Distribute Chipmunk on chocolatey
-run-name: chipmunk package creation and publish on chocolatey
-on: [push]
+name: Distribute Chipmunk on RPM/YUM
+run-name: chipmunk rpm package creation and publish to repository
+on: [workflow_dispatch]
 
 jobs:
-  distribute:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Package and publish
-      run: ./distribute_to_rpm.sh
+      - name: Create RPM package
+        run:  ./distribute_to_rpm.sh
+
+      - name: Push RPM package to chipmunk assets
+        run:  ./rpm_rhel/push_to_chipmunk_assets.sh
+
+      - name: Create and publish repo to yum
+        run:  ./rpm_rhel/publish_repo.sh

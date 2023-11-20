@@ -1,10 +1,9 @@
 #!/bin/bash
 set -eux
+
 sudo dnf update -y
 sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
-sudo yum update "*dnf*" libsolv
 sudo yum install -y createrepo rpm-build rpm-sign wget gcc python3 yum-utils rpm-devel
 
 url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
@@ -30,19 +29,21 @@ mkdir -p "$working_dir"/{BUILD,SOURCES,SPECS,RPMS,SRPMS}
 cd "$working_dir/SOURCES"
 wget $chipmunk_package_url
 
-# Create a source tarball (the same as those available on Github) using git-archive to make
-# sure there are no additional files included in the source package
+if [ ! -f $working_dir/SOURCES/chipmunk@$version-linux-portable.tgz ]; then
+        echo "Unable to download latest release tar. Exiting rpm package creation!"
+        sudo rm -rf "$working_dir"
+        exit 1
+fi
+
+# Update spec to refer to the latest version of chipmunk.
 cd "$source_dir"
 cat $output_dir/rpm_rhel/chipmunk.spec | sed -e "s/@VERSION@/$version/" > "$working_dir/SPECS/chipmunk.spec"
-echo "--------------------------------final spec file below----------------------------------------------------------------------------"
-cat $working_dir/SPECS/chipmunk.spec
-echo "--------------------------------end of spec file---------------------------------------------------------------------------------"
 
-# Build packages
+# Build package using chipmunk.spec
 cd "$working_dir/SPECS"
 rpmbuild --define "_topdir $working_dir" -ba chipmunk.spec
 
-cd "$source_dir"
 # Copy all the created files and clean up
-cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir"
+cd "$source_dir"
+cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir/rpm_rhel"
 sudo rm -rf "$working_dir"
