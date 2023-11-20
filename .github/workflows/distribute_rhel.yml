@@ -15,5 +15,5 @@ jobs:
       - name: Push RPM package to chipmunk assets
         run:  ./rpm_rhel/push_to_chipmunk_assets.sh
 
-      # - name: Create and publish repo to yum
-      #   run:  ./rpm_rhel/publish_repo.sh
+      - name: Create and publish repo to yum
+        run:  ./rpm_rhel/publish_repo.sh
