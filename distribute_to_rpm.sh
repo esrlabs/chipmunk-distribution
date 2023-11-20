@@ -1,9 +1,10 @@
 #!/bin/bash
 set -eux
 
-sudo dnf install -y createrepo rpm-build rpm-sign wget gcc python3 yum-utils rpm-devel
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+sudo apt-get install rpm
+# sudo dnf install -y createrepo rpm-build rpm-sign wget gcc python3 yum-utils rpm-devel
+# sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+# sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
 
 url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
 response=$(curl -s -L -I $url_chipmunk)
