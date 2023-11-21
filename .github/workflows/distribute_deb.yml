@@ -1,5 +1,5 @@
-name: Distribute Chipmunk on RPM/YUM
-run-name: chipmunk rpm package creation and publish to repository
+name: Distribute Chipmunk on APT/Debian
+run-name: chipmunk apt package creation and publish to debian repository
 on: [workflow_dispatch]
 
 jobs:
@@ -11,6 +11,7 @@ jobs:
       
       - name: Prepare environment
         run: |
+          pwd
           bash sripts/untar_release.sh
 
       - name: Build .deb package
