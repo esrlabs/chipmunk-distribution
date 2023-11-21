@@ -1,0 +1,26 @@
+name: Distribute Chipmunk on RPM/YUM
+run-name: chipmunk rpm package creation and publish to repository
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Prepare environment
+        run: |
+          bash sripts/untar_release.sh
+
+      - name: Build .deb package
+        run: |
+            bash scripts/build_deb_package.sh
+
+    #   - name: Push .deb package to chipmunk assets
+    #     run: |
+    #         bash rpm_rhel/push_to_chipmunk_assets
+    
+
+
+
