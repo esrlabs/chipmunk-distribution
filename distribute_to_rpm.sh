@@ -2,9 +2,6 @@
 set -eux
 
 sudo apt-get install rpm
-# sudo dnf install -y createrepo rpm-build rpm-sign wget gcc python3 yum-utils rpm-devel
-# sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-# sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
 
 url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
 response=$(curl -s -L -I $url_chipmunk)
@@ -45,5 +42,5 @@ rpmbuild --define "_topdir $working_dir" -ba chipmunk.spec
 
 # Copy all the created files and clean up
 cd "$source_dir"
-cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir/rpm_rhel"
+cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir"
 sudo rm -rf "$working_dir"
