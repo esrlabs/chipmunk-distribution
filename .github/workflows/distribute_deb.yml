@@ -14,6 +14,31 @@ jobs:
         run: | 
           bash apt/scripts/get_release.sh
 
+      - name: Install Build Dependencies
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y \
+              autoconf \
+              automake \
+              autotools-dev \
+              debhelper \
+              dh-make \
+              devscripts \
+              fakeroot \
+              file \
+              gfortran \
+              git \
+              gnupg \
+              gpc \
+              lintian \
+              patch \
+              patchutils \
+              pbuilder \
+              perl \
+              python \
+              quilt \
+              xutils-dev
+
       - name: Prepare environment
         id: prepare
         uses: actions/checkout@v2  # Checkout code into the workspace
@@ -25,7 +50,4 @@ jobs:
 
       - name: Build .deb package
         run: |
-          pwd
-          ls -l
           sudo bash apt/scripts/build_deb_package.sh ../package
-          cd chipmunk_workspace
