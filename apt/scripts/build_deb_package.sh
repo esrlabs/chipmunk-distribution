@@ -21,10 +21,6 @@ fi
 
  echo "Destination folder is set to: $destination_folder"
 
-# Navigate one directory up because
-# dpkg-buildpackage needs to open file debian/changelog
-cd ..
-
 # Check if chipmunk package is installed
 if dpkg-query -l chipmunk; then
     echo "Chipmunk package is installed. Removing it ..."
