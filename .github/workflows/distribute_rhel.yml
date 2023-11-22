@@ -26,6 +26,19 @@ jobs:
           repo: chipmunk
           tag_name: dummy-3.10.3
 
+      - name: Read output of get release
+        run: echo "${{ steps.get_release.outputs.upload_url }}"
+
+      - name: Upload RPM to chipmunk
+        id: upload_rpm
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHIPMUNK_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: ./*.x86_64.rpm
+          asset_name: *.x86_64.rpm
+
       # - name: upload RPM package to chipmunk
       #   if: startsWith(github.ref, 'refs/tags/')
       #   uses: AButler/upload-release-assets@v2.0
