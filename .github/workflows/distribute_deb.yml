@@ -14,11 +14,14 @@ jobs:
            bash apt/scripts/get_release.sh
 
       - name: Prepare environment
+        id: prepare
         run: |
           bash apt/scripts/untar_release.sh /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable.tar.gz
+          echo "::set-output name=work_dir::$(pwd)"
 
       - name: Build .deb package
         run: |
+           cd ${{ steps.prepare.outputs.work_dir }}
            sudo bash apt/scripts/build_deb_package.sh ../package
 
     #   - name: Push .deb package to chipmunk assets
