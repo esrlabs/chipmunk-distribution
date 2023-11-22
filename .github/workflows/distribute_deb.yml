@@ -17,9 +17,9 @@ jobs:
         run: |
           bash apt/scripts/untar_release.sh /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable.tar.gz
 
-      # - name: Build .deb package
-      #   run: |
-      #      sudo bash apt/scripts/build_deb_package.sh ../package
+      - name: Build .deb package
+        run: |
+           sudo bash apt/scripts/build_deb_package.sh ../package
 
     #   - name: Push .deb package to chipmunk assets
     #     run: |
