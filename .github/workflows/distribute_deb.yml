@@ -9,14 +9,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Prepare environment
-        run: |
-          pwd
-          bash apt/scripts/untar_release.sh
+      - name: Get release
+        run: | 
+           bash apt/scripts/get_release.sh
 
-      - name: Build .deb package
-        run: |
-            bash apt/scripts/build_deb_package.sh
+      # - name: Prepare environment
+      #   run: |
+      #     bash apt/scripts/untar_release.sh
+
+      # - name: Build .deb package
+      #   run: |
+      #       bash apt/scripts/build_deb_package.sh
 
     #   - name: Push .deb package to chipmunk assets
     #     run: |
