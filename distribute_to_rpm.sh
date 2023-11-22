@@ -44,3 +44,7 @@ rpmbuild --define "_topdir $working_dir" -ba chipmunk.spec
 cd "$source_dir"
 cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir"
 sudo rm -rf "$working_dir"
+
+# Rename package to match chipmunk assets naming convention
+cd "$output_dir"
+mv chipmunk-$version-0.$(arch).rpm chipmunk@$version.$(arch).rpm
