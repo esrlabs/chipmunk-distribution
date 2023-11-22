@@ -30,7 +30,6 @@ jobs:
         run: echo "${{ steps.get_release.outputs.upload_url }}"
 
       - name: Upload RPM to chipmunk
-        working-directory: .
         id: upload_rpm
         uses: actions/upload-release-asset@v1
         env:
