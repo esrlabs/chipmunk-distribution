@@ -39,6 +39,7 @@ jobs:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./*.x86_64.rpm
           asset_name: "*.x86_64.rpm"
+          asset_content_type: application/x-rpm
 
       # - name: upload RPM package to chipmunk
       #   if: startsWith(github.ref, 'refs/tags/')
