@@ -34,7 +34,8 @@ if [ -L /usr/bin/chipmunk ]; then
 		rm /usr/bin/chipmunk
 fi
 
-pwd
+
+cd apt
 ls -l
 
 # Build the package
