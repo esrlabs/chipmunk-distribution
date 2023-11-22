@@ -15,7 +15,8 @@ jobs:
 
       - name: list RPM package
         working-directory: .
-        run: ls
+        run: |
+          echo "RPM_FILE=$(find -type f -name '*.x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
 
       - name: Get release information from chipmunk
         id: get_release
@@ -39,8 +40,8 @@ jobs:
           owner: esrlabs
           repo: chipmunk
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./"*.x86_64.rpm"
-          asset_name: "*.x86_64.rpm"
+          asset_path: ./${{ env.RPM_FILE }}
+          asset_name: ${{ env.RPM_FILE }}
           asset_content_type: application/x-rpm
 
       # - name: upload RPM package to chipmunk
