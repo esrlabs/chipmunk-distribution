@@ -12,11 +12,11 @@ jobs:
       - name: Prepare environment
         run: |
           pwd
-          bash sripts/untar_release.sh
+          bash apt/scripts/untar_release.sh
 
       - name: Build .deb package
         run: |
-            bash scripts/build_deb_package.sh
+            bash apt/scripts/build_deb_package.sh
 
     #   - name: Push .deb package to chipmunk assets
     #     run: |
