@@ -47,4 +47,4 @@ sudo rm -rf "$working_dir"
 
 # Rename package to match chipmunk assets naming convention
 cd "$output_dir"
-mv chipmunk-$version-0.$(arch).rpm chipmunk@$version.$(arch).rpm
+mv chipmunk-$version-0.$(arch).rpm chipmunk@$version-linux-$(arch).rpm
