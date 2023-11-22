@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eux
+
 # Check if an argument is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 /path/to/file.tar.gz"
@@ -25,4 +27,6 @@ fi
 
 # Untar the file to the chipmunk directory
 tar -xzf "$tar_file" -C ../chipmunk
+
+ls -l
 

@@ -28,6 +28,4 @@ wget $chipmunk_package_url
 # replace hardcoded renaming of release
 mv chipmunk@3.10.3-linux-portable.tgz chipmunk@3.10.3-linux-portable.tar.gz
 
-# test message to print location
-pwd
 
