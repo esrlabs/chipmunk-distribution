@@ -28,5 +28,8 @@ fi
 # Untar the file to the chipmunk directory
 tar -xzf "$tar_file" -C ../chipmunk
 
+cd /tmp/chipmunk_work_dir/
+pwd
 ls -l
+
 
