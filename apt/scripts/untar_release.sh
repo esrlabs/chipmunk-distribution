@@ -29,7 +29,6 @@ fi
 tar -xzf "$tar_file" -C ../chipmunk
 
 cd ../chipmunk
-pwd
-ls -l
+
 
 

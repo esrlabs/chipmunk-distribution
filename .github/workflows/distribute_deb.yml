@@ -25,8 +25,7 @@ jobs:
 
       - name: Build .deb package
         run: |
-          cd $WORK_DIR
-          ls -l
-          cd chipmunk
           pwd
+          ls -l
           sudo bash apt/scripts/build_deb_package.sh ../package
+          cd chipmunk_workspace
