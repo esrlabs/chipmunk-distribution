@@ -34,6 +34,9 @@ if [ -L /usr/bin/chipmunk ]; then
 		rm /usr/bin/chipmunk
 fi
 
+pwd
+ls -l
+
 # Build the package
 dpkg-buildpackage -b
 
