@@ -16,7 +16,7 @@ jobs:
       - name: list RPM package
         working-directory: .
         run: |
-          echo "RPM_FILE=$(find -type f -name '*.x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+          echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
 
       # - name: Get release information from chipmunk
       #   id: get_release
