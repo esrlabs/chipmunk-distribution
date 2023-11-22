@@ -4,8 +4,8 @@
   <metadata>
     <id>chipmunk</id>
     <version>1.0.0</version>
-    <packageSourceUrl>https://github.com/itsmesamster/chipmunk-distribution/tree/chocolatey/chocolatey_win</packageSourceUrl>
-    <owners>Dmitry Astafyev, esrlabs</owners>
+    <packageSourceUrl>https://github.com/esrlabs/chipmunk-distribution/tree/chocolatey/chocolatey_win</packageSourceUrl>
+    <owners>ESR Labs, Dmitry Astafyev, Oliver Mueller</owners>
     <title>chipmunk (Install)</title>
     <authors>Dmitry Astafyev, Oliver Mueller</authors>
     <projectUrl>https://github.com/esrlabs/chipmunk</projectUrl>
@@ -23,25 +23,3 @@
     <file src="tools\**" target="tools" />
   </files>
 </package>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
