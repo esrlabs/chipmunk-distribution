@@ -31,6 +31,7 @@ jobs:
 
       - name: Upload RPM to chipmunk
         id: upload_rpm
+        working-directory: .
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.CHIPMUNK_TOKEN }}
@@ -39,7 +40,7 @@ jobs:
           owner: esrlabs
           repo: chipmunk
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: .
+          asset_path: ./"*.x86_64.rpm"
           asset_name: "*.x86_64.rpm"
           asset_content_type: application/x-rpm
 
