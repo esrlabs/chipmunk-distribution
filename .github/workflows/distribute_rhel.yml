@@ -18,25 +18,38 @@ jobs:
         run: |
           echo "RPM_FILE=$(find -type f -name '*.x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
 
-      - name: Get release information from chipmunk
-        id: get_release
-        uses: kaliber5/action-get-release@v1
-        with:
-          token: ${{ secrets.CHIPMUNK_TOKEN }}
-          owner: esrlabs
-          repo: chipmunk
-          tag_name: dummy-3.10.3
+      # - name: Get release information from chipmunk
+      #   id: get_release
+      #   uses: kaliber5/action-get-release@v1
+      #   with:
+      #     token: ${{ secrets.CHIPMUNK_TOKEN }}
+      #     owner: esrlabs
+      #     repo: chipmunk
+      #     tag_name: dummy-3.10.3
 
-      - name: Read output of get release
-        run: echo "${{ steps.get_release.outputs.upload_url }}"
+      # - name: Read output of get release
+      #   run: echo "${{ steps.get_release.outputs.upload_url }}"
 
-      - name: Upload RPM to chipmunk
+      # - name: Upload RPM to chipmunk
+      #   id: upload_rpm
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.CHIPMUNK_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.get_release.outputs.upload_url }}
+      #     asset_path: ./${{ env.RPM_FILE }}
+      #     asset_name: ${{ env.RPM_FILE }}
+      #     asset_content_type: application/x-rpm
+
+      - name: Upload RPM to chipmunk using overwrite functionality
         id: upload_rpm
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.CHIPMUNK_TOKEN }}
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./${{ env.RPM_FILE }}
+          repo_name: esrlabs/chipmunk
+          # A personal access token for the GitHub repository in which the release will be created and edited.
+          # It is recommended to create the access token with the following scopes: `repo, user, admin:repo_hook`.
+          repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
+          file: ./${{ env.RPM_FILE }}
           asset_name: ${{ env.RPM_FILE }}
-          asset_content_type: application/x-rpm
+          tag: dummy-3.10.3
+          overwrite: true
