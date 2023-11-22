@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Runner Version
+        run: echo "Runner version:$(./svc.sh --version)"
+
       - name: Checkout
         uses: actions/checkout@v3
       
@@ -17,11 +20,13 @@ jobs:
         id: prepare
         run: |
           bash apt/scripts/untar_release.sh /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable.tar.gz
-          echo "::set-output name=work_dir::$(pwd)"
+          echo "WORK_DIR=$(pwd)" >> $GITHUB_ENV
 
       - name: Build .deb package
         run: |
-           cd ${{ steps.prepare.outputs.work_dir }}
+           echo $WORK_DIR
+           cd $WORK_DIR
+           pwd
            sudo bash apt/scripts/build_deb_package.sh ../package
 
     #   - name: Push .deb package to chipmunk assets
