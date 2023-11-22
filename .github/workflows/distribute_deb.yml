@@ -15,7 +15,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          bash apt/scripts/untar_release.sh chipmunk@3.10.3-linux-portable.tar.gz
+          bash apt/scripts/untar_release.sh /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable.tar.gz
 
       # - name: Build .deb package
       #   run: |
