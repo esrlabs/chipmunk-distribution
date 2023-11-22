@@ -2,12 +2,6 @@
 
 set -eux
 
-# Navigate to chimpunk directory
-cd /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable
-pwd
-ls -l 
-
-
 # Check if the script is being run with sudo
 if [[ $EUID -ne 0 ]]; then
     echo "Requested operation requires superuser privilege and needs to be run with sudo. Please use: sudo $0" 1>&2
