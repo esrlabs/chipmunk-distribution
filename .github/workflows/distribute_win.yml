@@ -8,5 +8,5 @@ jobs:
     steps:
       - name: Package and publish
         run: |
-          Set-ExecutionPolicy Bypass -Scope Process
+          Set-ExecutionPolicy Unrestricted -Scope Process
           powershell .\distribute_to_chocolatey.ps1 -publish
