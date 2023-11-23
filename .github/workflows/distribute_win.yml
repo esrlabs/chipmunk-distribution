@@ -7,4 +7,4 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Package and publish
-        run: pwsh .\distribute_to_chocolatey.ps1 -publish
+        run: powershell .\distribute_to_chocolatey.ps1 -publish
