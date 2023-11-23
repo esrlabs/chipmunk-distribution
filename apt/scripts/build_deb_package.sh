@@ -52,3 +52,6 @@ fi
 
 # Move the generated files to the destination folder
 mv ../chipmunk_*.buildinfo ../chipmunk_*.changes ../chipmunk_*.deb ../chipmunk-dbgsym_* "$destination_folder"
+
+cd $destination_folder
+ls -l
