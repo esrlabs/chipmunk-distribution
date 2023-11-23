@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eux
+pwd 
 
 # Check if the script is being run with sudo
 if [[ $EUID -ne 0 ]]; then
