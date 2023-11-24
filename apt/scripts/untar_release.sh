@@ -28,17 +28,14 @@ else
     mkdir "$tar_dir/chipmunk"
 fi
 
-pwd
-ls -l
+# Extract the filename without extension
+filename=$(basename "$tar_file" .tar.gz)
 
 # Change to the directory containing TAR_FILE
 cd "$tar_dir"
 
-pwd
-ls -l
-
 # Untar the file to the chipmunk directory
-tar -xzf "chipmunk@*.tar.gz" -C chipmunk
+tar -xzf "$filename.tar.gz" -C chipmunk
 
 # Change to the chipmunk directory
 cd chipmunk
