@@ -54,4 +54,4 @@ fi
 mv ../chipmunk_*.buildinfo ../chipmunk_*.changes ../chipmunk_*.deb ../chipmunk-dbgsym_* "$destination_folder"
 
 cd $destination_folder
-ls -l
+chmod 777 *
