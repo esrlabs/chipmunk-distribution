@@ -12,9 +12,9 @@ override_dh_auto_install:
 	
 	pwd
 	ls -l
-	
+
 	# Copy chipmunk release
-	cp -r ../chipmunk debian/chipmunk/usr/lib/chipmunk
+	cp -r /tmp/chipmunk_work_dir/chipmunk debian/chipmunk/usr/lib/chipmunk
 
 	# Create a sym link
 	ln -s /usr/lib/chipmunk/chipmunk /usr/bin/chipmunk
