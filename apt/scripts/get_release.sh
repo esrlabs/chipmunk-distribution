@@ -25,7 +25,20 @@ mkdir -p "$working_dir"
 cd "$working_dir"
 wget $chipmunk_package_url
 
-# replace hardcoded renaming of release
-mv chipmunk@3.10.3-linux-portable.tgz chipmunk@3.10.3-linux-portable.tar.gz
+ls -l
+
+# Find the file starting with "chipmunk@"
+file=$(find . -type f -name 'chipmunk@*' -print -quit)
+
+# Check if a file is found
+if [ -n "$file" ]; then
+  # Extract the basename without extension
+  filename=$(basename "$file" .tgz)
+
+  # Move the file with the new extension
+  mv "$file" "$filename.tar.gz"
+else
+  echo "File not found."
+fi
 
 
