@@ -32,7 +32,7 @@ fi
 cd "$tar_dir"
 
 # Untar the file to the chipmunk directory
-tar -xzf "$tar_file" -C chipmunk
+tar -xzf "chipmunk@*.tar.gz" -C chipmunk
 
 # Change to the chipmunk directory
 cd chipmunk
