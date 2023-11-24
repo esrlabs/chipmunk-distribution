@@ -25,8 +25,6 @@ mkdir -p "$working_dir"
 cd "$working_dir"
 wget $chipmunk_package_url
 
-ls -l
-
 # Find the file starting with "chipmunk@"
 file=$(find . -type f -name 'chipmunk@*' -print -quit)
 

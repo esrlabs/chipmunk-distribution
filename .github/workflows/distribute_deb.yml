@@ -23,6 +23,8 @@ jobs:
         id: prepare
         run: | 
             bash apt/scripts/untar_release.sh ${{env.TAR_FILE}}  
+        env:
+            TAR_FILE: ${{ env.TAR_FILE }}
 
       - name: Build .deb package
         run: |
