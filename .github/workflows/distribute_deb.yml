@@ -18,15 +18,12 @@ jobs:
       - name: Get release
         run: | 
           bash apt/scripts/get_release.sh
+          echo "TAR_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
 
       - name: Prepare environment
         id: prepare
-        uses: actions/checkout@v2  # Checkout code into the workspace
-        with:
-            path: chipmunk_workspace  # Set workspace path
-      - run: | 
-            cd chipmunk_workspace
-            bash apt/scripts/untar_release.sh /tmp/chipmunk_work_dir/chipmunk@3.10.3-linux-portable.tar.gz  
+        run: | 
+            bash apt/scripts/untar_release.sh ${{env.TAR_FILE}}  
 
       - name: Build .deb package
         run: |
