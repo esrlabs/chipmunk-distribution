@@ -10,6 +10,9 @@ override_dh_auto_install:
 	mkdir -p debian/chipmunk/usr/bin
 	mkdir -p debian/chipmunk/usr/lib/chipmunk
 	
+	pwd
+	ls -l
+	
 	# Copy chipmunk release
 	cp -r ../chipmunk debian/chipmunk/usr/lib/chipmunk
 
