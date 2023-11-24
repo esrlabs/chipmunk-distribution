@@ -18,7 +18,13 @@ jobs:
       - name: Get release
         run: | 
           bash apt/scripts/get_release.sh
-          echo "TAR_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
+
+      - name: list tar release
+        working-directory: .
+        run: |
+            pwd
+            ls -l
+            echo "TAR_FILE=$(find . -type f -name 'chipmunk@*' -printf '%f\n')" >> $GITHUB_ENV
 
       - name: Prepare environment
         id: prepare
