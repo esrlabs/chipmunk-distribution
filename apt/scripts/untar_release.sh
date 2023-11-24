@@ -28,8 +28,14 @@ else
     mkdir "$tar_dir/chipmunk"
 fi
 
+pwd
+ls -l
+
 # Change to the directory containing TAR_FILE
 cd "$tar_dir"
+
+pwd
+ls -l
 
 # Untar the file to the chipmunk directory
 tar -xzf "chipmunk@*.tar.gz" -C chipmunk
