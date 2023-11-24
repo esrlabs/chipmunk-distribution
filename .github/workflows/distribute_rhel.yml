@@ -1,6 +1,9 @@
 name: Distribute Chipmunk on RPM/YUM
 run-name: chipmunk rpm package creation and publish to repository
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -17,6 +20,10 @@ jobs:
         working-directory: .
         run: |
           echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+
+      - name: list tag_name
+        run: |
+          echo ${{ github.ref_name }}
 
       # - name: Get release information from chipmunk
       #   id: get_release
@@ -49,5 +56,5 @@ jobs:
           repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
           file: ./${{ env.RPM_FILE }}
           asset_name: ${{ env.RPM_FILE }}
-          tag: dummy-3.10.3
+          tag: ${{ github.ref_name }}
           overwrite: true
