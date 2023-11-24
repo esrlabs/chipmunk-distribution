@@ -1,7 +1,9 @@
 name: Distribute Chipmunk on APT/Debian
 run-name: chipmunk apt package creation and publish to debian repository
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
