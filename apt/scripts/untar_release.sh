@@ -35,7 +35,7 @@ filename=$(basename "$tar_file" .tar.gz)
 cd "$tar_dir"
 
 # Untar the file to the chipmunk directory
-tar -xzf "$filename.tar.gz" -C chipmunk
+tar -xzf "$filename.tar.gz" -C /home/runner/work/chipmunk-deb-distribution/chipmunk-deb-distribution/chipmunk
 
 # Change to the chipmunk directory
 cd chipmunk
