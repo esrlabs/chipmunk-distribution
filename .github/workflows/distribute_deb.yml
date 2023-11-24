@@ -36,6 +36,7 @@ jobs:
         working-directory: .
         run: |
           cd package
+          ls -l
           echo "DEB_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
           echo $DEB_FILE
           echo ${{ env.DEB_FILE }}
