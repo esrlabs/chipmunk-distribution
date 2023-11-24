@@ -10,11 +10,11 @@ fi
 
 tar_file="$1"
 
-# Check if the file exists
-if [ ! -f "$tar_file" ]; then
-    echo "File not found: $tar_file"
-    exit 1
-fi
+# # Check if the file exists
+# if [ ! -f "$tar_file" ]; then
+#     echo "File not found: $tar_file"
+#     exit 1
+# fi
 
 # Extract the directory containing the TAR_FILE
 tar_dir="$(dirname "$tar_file")"
