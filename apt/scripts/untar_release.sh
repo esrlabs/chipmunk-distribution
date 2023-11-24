@@ -16,21 +16,29 @@ if [ ! -f "$tar_file" ]; then
     exit 1
 fi
 
+# Extract the directory containing the TAR_FILE
+tar_dir="$(dirname "$tar_file")"
+
 # Check if the chipmunk directory exists
-if [ -d "../chipmunk" ]; then
+if [ -d "$tar_dir/chipmunk" ]; then
     echo "Directory chipmunk exists. Clearing contents ..."
-    rm -rf ../chipmunk/*
+    rm -rf "$tar_dir/chipmunk"/*
 else
     echo "Creating directory chipmunk ..."
-    mkdir ../chipmunk
+    mkdir "$tar_dir/chipmunk"
 fi
 
+# Change to the directory containing TAR_FILE
+cd "$tar_dir"
+
 # Untar the file to the chipmunk directory
-tar -xzf "$tar_file" -C ../chipmunk
+tar -xzf "$tar_file" -C chipmunk
 
-cd ../chipmunk
+# Change to the chipmunk directory
+cd chipmunk
 
+# Display the contents of the chipmunk directory
 ls -l
+
+# Print the current working directory
 pwd
-
-
