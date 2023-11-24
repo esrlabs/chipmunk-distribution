@@ -36,6 +36,10 @@ if [ -n "$file" ]; then
   # Move the file with the new extension
   mv "$file" "$filename.tar.gz"
   echo "TAR_FILE=$filename.tar.gz" >> $GITHUB_ENV
+
+  pwd
+  ls -l
+  
 else
   echo "File not found."
 fi
