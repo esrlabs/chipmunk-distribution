@@ -35,6 +35,7 @@ jobs:
       - name: list RPM package
         working-directory: .
         run: |
+          cd package
           pwd
           echo "DEB_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
           ls -l
