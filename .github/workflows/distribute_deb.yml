@@ -37,6 +37,9 @@ jobs:
         run: |
           cd package
           echo "DEB_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
+      - name: list tag_name
+        run: |
+          echo ${{ github.ref_name }}
       
       - name: Upload deb to chipmunk using overwrite functionality
         id: upload
@@ -46,6 +49,6 @@ jobs:
           repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
           file: ./package/${{ env.DEB_FILE }}
           asset_name: ${{ env.DEB_FILE }}
-          tag: dummy-3.10.3
+          tag: ${{ github.ref_name }}
           overwrite: true
 
