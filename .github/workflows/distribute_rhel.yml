@@ -25,29 +25,6 @@ jobs:
         run: |
           echo ${{ github.ref_name }}
 
-      # - name: Get release information from chipmunk
-      #   id: get_release
-      #   uses: kaliber5/action-get-release@v1
-      #   with:
-      #     token: ${{ secrets.CHIPMUNK_TOKEN }}
-      #     owner: esrlabs
-      #     repo: chipmunk
-      #     tag_name: dummy-3.10.3
-
-      # - name: Read output of get release
-      #   run: echo "${{ steps.get_release.outputs.upload_url }}"
-
-      # - name: Upload RPM to chipmunk
-      #   id: upload_rpm
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.CHIPMUNK_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.get_release.outputs.upload_url }}
-      #     asset_path: ./${{ env.RPM_FILE }}
-      #     asset_name: ${{ env.RPM_FILE }}
-      #     asset_content_type: application/x-rpm
-
       - name: Upload RPM to chipmunk using overwrite functionality
         id: upload_rpm
         uses: svenstaro/upload-release-action@v2
