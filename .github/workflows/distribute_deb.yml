@@ -33,7 +33,7 @@ jobs:
         working-directory: .
         run: |
           cd package
-          echo "DEB_FILE=$(find -type f -name '*_amd64.deb' -printf '%f\n')" >> $GITHUB_ENV
+          echo "DEB_FILE=$(find -type f -name '*.deb' -printf '%f\n')" >> $GITHUB_ENV
       - name: list tag_name
         run: |
           echo ${{ github.ref_name }}
