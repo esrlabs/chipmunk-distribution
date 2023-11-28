@@ -2,9 +2,6 @@
 
 set -eux
 
-pwd
-ls -l
-
 # Check if the script is being run with sudo
 if [[ $EUID -ne 0 ]]; then
     echo "Requested operation requires superuser privilege and needs to be run with sudo. Please use: sudo $0" 1>&2
@@ -37,9 +34,8 @@ if [ -L /usr/bin/chipmunk ]; then
 		rm /usr/bin/chipmunk
 fi
 
-
+# navigate to apt folder in order to run build command
 cd apt
-ls -l
 
 # Build the package
 dpkg-buildpackage -b
@@ -52,8 +48,14 @@ else
     echo "Destination folder: $destination_folder"
 fi
 
-# Move the generated files to the destination folder
-mv ../chipmunk_*.buildinfo ../chipmunk_*.changes ../chipmunk_*.deb ../chipmunk-dbgsym_* "$destination_folder"
+# Move the generated files to the destination folder and rename them
+for file in ../chipmunk_*_amd64.*; do
+    if [ -e "$file" ]; then
+        new_name="${file/_amd64/}"
+        mv "$file" "$destination_folder/$new_name"
+    fi
+done
 
 cd $destination_folder
+ls -l
 chmod 777 *
