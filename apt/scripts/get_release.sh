@@ -32,12 +32,11 @@ file=$(find . -type f -name 'chipmunk@*' -print -quit)
 if [ -n "$file" ]; then
   # Extract the basename without extension
   filename=$(basename "$file" .tgz)
-  echo "FILENAME=$filename" >> $GITHUB_ENV
-
-  pwd
-  ls -l
-
   
+  # Extract the version from the filename
+  version=$(echo "$filename" | awk -F'[@-]' '{print $2}')
+  echo "VERSION=$version" >> $GITHUB_ENV
+
   # Move the file with the new extension
   mv "$file" "$filename.tar.gz"
   echo "TAR_FILE=$working_dir/$filename.tar.gz" >> $GITHUB_ENV
