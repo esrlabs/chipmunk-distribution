@@ -1,9 +1,6 @@
 name: Distribute Chipmunk on APT/Debian
 run-name: chipmunk apt package creation and publish to debian repository
-on:
-  push:
-    tags:
-      - "*"
+on: workflow_dispatch
 
 jobs:
   build:
@@ -49,6 +46,6 @@ jobs:
           repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
           file: ./package/${{ env.DEB_FILE }}
           asset_name: ${{ env.DEB_FILE }}
-          tag: ${{ github.ref_name }}
+          tag: dummy-3.10.3
           overwrite: true
 
