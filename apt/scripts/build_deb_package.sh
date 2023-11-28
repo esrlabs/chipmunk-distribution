@@ -55,7 +55,3 @@ for file in ../chipmunk_*_amd64.*; do
         mv "$file" "$destination_folder/$new_name"
     fi
 done
-
-cd $destination_folder
-ls -l
-chmod 777 *
