@@ -17,6 +17,7 @@ if [ -z "$1" ]; then
     fi
 else
     destination_folder="$1"
+    version="$2"
 fi
 
  echo "Destination folder is set to: $destination_folder"
@@ -35,7 +36,12 @@ if [ -L /usr/bin/chipmunk ]; then
 fi
 
 # navigate to apt folder in order to run build command
-cd apt
+cd apt/debian
+pwd
+
+# Update the debian/changelog file with the new filename format
+sed -i "s/chipmunk (.*) UNRELEASED;/chipmunk ($version) UNRELEASED;/" changelog
+cat debian/changelog
 
 # Build the package
 dpkg-buildpackage -b
