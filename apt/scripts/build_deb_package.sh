@@ -51,7 +51,7 @@ fi
 # Move the generated files to the destination folder and rename them
 for file in ../chipmunk_*_amd64.*; do
     if [ -e "$file" ]; then
-        new_name="${file/_amd64/}"
+        new_name=$(basename "$file" | sed 's/_amd64//')
         mv "$file" "$destination_folder/$new_name"
     fi
 done
