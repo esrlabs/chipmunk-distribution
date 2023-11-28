@@ -37,11 +37,13 @@ fi
 
 # navigate to apt folder in order to run build command
 cd apt/debian
+
 pwd
 
+ls -l
 # Update the debian/changelog file with the new filename format
 sed -i "s/chipmunk (.*) UNRELEASED;/chipmunk ($version) UNRELEASED;/" changelog
-cat debian/changelog
+cat changelog
 
 # Build the package
 dpkg-buildpackage -b
