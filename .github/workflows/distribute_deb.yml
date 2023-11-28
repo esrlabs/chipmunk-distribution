@@ -27,13 +27,14 @@ jobs:
 
       - name: Build .deb package
         run: |
-          sudo bash apt/scripts/build_deb_package.sh ../package
+          sudo bash apt/scripts/build_deb_package.sh ../package ${{env.VERSION}}
       
       - name: list deb package
         working-directory: .
         run: |
           cd package
           echo "DEB_FILE=$(find -type f -name '*.deb' -printf '%f\n')" >> $GITHUB_ENV
+
       - name: list tag_name
         run: |
           echo ${{ github.ref_name }}
