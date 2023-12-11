@@ -1,17 +1,84 @@
 name: Distribute Chipmunk on RPM/YUM
 run-name: chipmunk rpm package creation and publish to repository
-on:
-  push:
-    tags:
-      - "*"
+on: [workflow_dispatch]
+# on:
+#   push:
+#     tags:
+#       - "*"
 
 jobs:
-  build:
+  build_x86_64:
     runs-on: ubuntu-latest
+    name: Build on ubuntu-latest x86_64
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       
+      - name: Create RPM package
+        run: |
+          bash distribute_to_rpm.sh
+
+      - name: list RPM package
+        working-directory: .
+        run: |
+          echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+
+      # - name: list tag_name
+      #   run: |
+      #     echo ${{ github.ref_name }}
+
+      - name: Upload RPM to chipmunk using overwrite functionality
+        id: upload_rpm
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: esrlabs/chipmunk
+          repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
+          file: ./${{ env.RPM_FILE }}
+          asset_name: ${{ env.RPM_FILE }}
+          tag: dummy-3.10.3
+          overwrite: true
+
+jobs:
+  build_arm64:
+    runs-on: ubuntu-latest
+    name: Build on ubuntu-latest aarch64
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        with:
+          arch: aarch64
+          distro: ubuntu_latest
+          githubToken: ${{ github.token }}
+        name: Create RPM package
+          run: |
+            bash distribute_to_rpm_arm64.sh
+        name: list RPM package
+          working-directory: .
+          run: |
+            echo "RPM_FILE=$(find -type f -name '*-arm64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+        # name: list tag_name
+        #   run: |
+        #     echo ${{ github.ref_name }}
+        name: Upload RPM to chipmunk using overwrite functionality
+          id: upload_rpm
+          uses: svenstaro/upload-release-action@v2
+          with:
+            repo_name: esrlabs/chipmunk
+            repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
+            file: ./${{ env.RPM_FILE }}
+            asset_name: ${{ env.RPM_FILE }}
+            tag: dummy-3.10.3
+            overwrite: true
+
+
+jobs:
+  build_arm64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Create RPM package
         run: |
           bash distribute_to_rpm.sh
