@@ -38,7 +38,6 @@ jobs:
           tag: dummy-3.10.3
           overwrite: true
 
-jobs:
   build_arm64:
     runs-on: ubuntu-latest
     name: Build on ubuntu-latest aarch64
