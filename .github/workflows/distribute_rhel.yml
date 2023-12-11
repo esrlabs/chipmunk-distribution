@@ -71,34 +71,3 @@ jobs:
             tag: dummy-3.10.3
             overwrite: true
 
-
-jobs:
-  build_arm64:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Create RPM package
-        run: |
-          bash distribute_to_rpm.sh
-
-      - name: list RPM package
-        working-directory: .
-        run: |
-          echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
-
-      - name: list tag_name
-        run: |
-          echo ${{ github.ref_name }}
-
-      - name: Upload RPM to chipmunk using overwrite functionality
-        id: upload_rpm
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_name: esrlabs/chipmunk
-          repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
-          file: ./${{ env.RPM_FILE }}
-          asset_name: ${{ env.RPM_FILE }}
-          tag: ${{ github.ref_name }}
-          overwrite: true
