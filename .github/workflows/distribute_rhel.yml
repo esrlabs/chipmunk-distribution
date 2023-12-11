@@ -45,29 +45,30 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: uraimo/run-on-arch-action@v2
-        name: Run commands
+        name: Create RPM package
         with:
           arch: aarch64
           distro: ubuntu_latest
           githubToken: ${{ github.token }}
-        name: Create RPM package
-          run: |
-            bash distribute_to_rpm_arm64.sh
-        name: list RPM package
-          working-directory: .
-          run: |
-            echo "RPM_FILE=$(find -type f -name '*-arm64.rpm' -printf '%f\n')" >> $GITHUB_ENV
-        # name: list tag_name
-        #   run: |
-        #     echo ${{ github.ref_name }}
-        name: Upload RPM to chipmunk using overwrite functionality
-          id: upload_rpm
-          uses: svenstaro/upload-release-action@v2
-          with:
-            repo_name: esrlabs/chipmunk
-            repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
-            file: ./${{ env.RPM_FILE }}
-            asset_name: ${{ env.RPM_FILE }}
-            tag: dummy-3.10.3
-            overwrite: true
+        run: |
+          bash distribute_to_rpm_arm64.sh
 
+      - name: list RPM package
+        working-directory: .
+        run: |
+          echo "RPM_FILE=$(find -type f -name '*-arm64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+
+      # - name: list tag_name
+      #   run: |
+      #     echo ${{ github.ref_name }}
+
+      - name: Upload RPM to chipmunk using overwrite functionality
+        id: upload_rpm
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: esrlabs/chipmunk
+          repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
+          file: ./${{ env.RPM_FILE }}
+          asset_name: ${{ env.RPM_FILE }}
+          tag: dummy-3.10.3
+          overwrite: true
