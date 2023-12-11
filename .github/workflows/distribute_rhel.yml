@@ -49,8 +49,10 @@ jobs:
           arch: aarch64
           distro: ubuntu_latest
           githubToken: ${{ github.token }}
+
+      - name: Create RPM package
         run: |
-          bash distribute_to_rpm_arm64.sh
+          bash distribute_to_rpm.sh
 
       - name: list RPM package
         working-directory: .
