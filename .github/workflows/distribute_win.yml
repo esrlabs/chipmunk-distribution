@@ -9,4 +9,4 @@ jobs:
       - name: Package and publish
         run: |
           Set-ExecutionPolicy Unrestricted -Scope Process
-          powershell .\distribute_to_chocolatey.ps1 -publish
+          powershell .\chocolatey_win\scripts\distribute_to_chocolatey.ps1 -publish
