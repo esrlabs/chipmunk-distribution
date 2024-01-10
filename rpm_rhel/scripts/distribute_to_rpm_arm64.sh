@@ -13,10 +13,9 @@ chipmunk_package_url="https://github.com/esrlabs/chipmunk/releases/download/$ver
 
 # Folder structure
 output_dir=$(pwd)
-source_dir=$(dirname "$0")
 working_dir=/tmp/chipmunk_rpm_work_dir
 
-echo "source_dir = '$source_dir'"
+echo "output_dir = '$output_dir'"
 
 # Create an empty working directory for rpmbuild
 sudo rm -rf "$working_dir"
@@ -33,18 +32,16 @@ if [ ! -f $working_dir/SOURCES/chipmunk@$version-linux-portable.tgz ]; then
 fi
 
 # Update spec to refer to the latest version of chipmunk.
-cd "$source_dir"
-cat $output_dir/rpm_rhel/chipmunk.spec | sed -e "s/@VERSION@/$version/" > "$working_dir/SPECS/chipmunk.spec"
+cat $output_dir/rpm_rhel/rpm_specs/chipmunk_arm64.spec | sed -e "s/@VERSION@/$version/" > "$working_dir/SPECS/chipmunk_arm64.spec"
 
-# Build package using chipmunk.spec
+# Build package using chipmunk_arm64.spec
 cd "$working_dir/SPECS"
-rpmbuild --define "_topdir $working_dir" -ba chipmunk.spec
+rpmbuild --define "_topdir $working_dir" --target arm64 -ba chipmunk_arm64.spec
 
 # Copy all the created files and clean up
-cd "$source_dir"
-cp "$working_dir"/{RPMS/x86_64,SRPMS}/* "$output_dir"
+cp "$working_dir"/RPMS/arm64/* "$output_dir"
 sudo rm -rf "$working_dir"
 
 # Rename package to match chipmunk assets naming convention
 cd "$output_dir"
-mv chipmunk-$version-0.$(arch).rpm chipmunk@$version-linux-$(arch).rpm
+mv chipmunk-$version-0.arm64.rpm chipmunk@$version-linux-arm64.rpm

@@ -4,3 +4,4 @@ apt/debian/.debhelper/*
 apt/package/*
 package/*
 
+.DS_Store
