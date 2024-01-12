@@ -41,7 +41,7 @@ Thanks to GitHub Actions, we are able to bring you the latest releases packaged 
 
 1. **Windows**
 
-    For Windows package manager (Chocolatey), distribution was manually triggered and only done once. Chocolatey takes care of fetching latest version of chipmunk so we don't need to make any updates on release.
+    For Windows package manager (Chocolatey), distribution was manually triggered and only done once. Chocolatey takes care of fetching latest version of chipmunk so we don't need to make any updates on release. Chocolatey package for chipmunk is already under review and once approved by the moderators, Chipmunk would be available on Chocolatey. To do - Update chocolatey package url once its published.
 
 2. **MacOS**
 
@@ -109,8 +109,7 @@ These instructions will get you a copy of the project up and running on your loc
 - YaST (opensuse, redhat) ❌  - Not started yet, but in the queue for next releases.
 - dpkg (deepin) ❌ - Not started yet, but in the queue for next releases.
 
- 
-❗ For Debian users we deploy in each [Chipmunk](https://github.com/esrlabs/chipmunk/releases) release the .deb package. Publishing this .deb package to the official apt repository is on review by the debian community and still ongoing. 
+❗ For Debian/RHEL/Fedora users, a .rpm/.deb package is released with each chipmunk release for easy installation. We are currently working on getting the said rpm package to be published on relevant package repositories.
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@alfr1337](https://github.com/alfr1337) - Initial work
