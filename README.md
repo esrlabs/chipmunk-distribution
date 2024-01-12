@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="doc/1921521.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Chipmunk Distribution</h3>
@@ -25,16 +25,13 @@
 - [Current State](#current_state)
 - [Authors](#authors)
 
-## 🧐 About <a name = "about"></a>
+## About <a name = "about"></a>
 
-Chipmunk Distribution – a repository for packaging and distributing latest releases of chipmunk!
+Chipmunk Distribution – a repository for packaging and distributing latest releases of [Chipmunk](https://github.com/esrlabs/chipmunk/releases)!
 
-Thanks to GitHub Actions, we've got software packages ready to roll with minimal effort!
+Thanks to GitHub Actions, we are able to bring you the latest releases packaged and ready for the official repositories.
 
-This way we are able to bring you the latest releases of [Chipmunk](https://github.com/esrlabs/chipmunk/releases) packaged and ready for the official repositories.
-
-
-## 🌟 General Workflow <a name = "workflows"></a>
+## General Workflow <a name = "workflows"></a>
 
 ---
 
@@ -66,13 +63,11 @@ This way we are able to bring you the latest releases of [Chipmunk](https://gith
         - register cretead package to official repository
         - upload a copy to chipmunk releases
 
-To implement this structure we are wrapping this steps in scripts (bash, shell, make or python).  
+    To implement this structure we are wrapping this steps in scripts (bash, shell, make or python).  
 
-Operations like: download of latest chipmunk release, upload of built package are done by common scripts. 
+    Each workflow is automatically triggered by the release workflow from [chipmunk](https://github.com/esrlabs/chipmunk/blob/master/.github/workflows/release.yml). 
 
-Each workflow is automatically triggered by the release workflow from [chipmunk](https://github.com/esrlabs/chipmunk/blob/master/.github/workflows/release.yml). 
-
-Inside the release workflow a release tag is pushed to chipmunk-distribution. Each linux workflow will be triggered and will proceed with building the packages.   
+    Inside the release workflow a release tag is pushed to chipmunk-distribution. Each linux workflow will be triggered and will proceed with building the packages.   
 
 
 ### Prerequisites
@@ -106,15 +101,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## 🚀 Current State <a name = "current_state"></a>
 
-- pacman (arch, manjaro) ⛏️ - @alfr1337
+- pacman (arch, manjaro) ⛏️ - [@alfr1337](https://github.com/alfr1337)
 - brew (mac) ✅ 
-- chocolatey (windows) ✅ - @itsmesamster 
-- apt (ubuntu, debian) ❌ - @alfr1337
-- dnf (fedora) ❌ - 
-- YaST (opensuse, redhat) ❌  - 
-- dpkg (deepin) ❌ - 
+- chocolatey (windows) ✅ -[@itsmesamster](https://github.com/itsmesamster) 
+- apt (ubuntu, debian) ⛏️ - [@alfr1337](https://github.com/alfr1337)
+- dnf (fedora) ⛏️ - [@itsmesamster](https://github.com/itsmesamster)
+- YaST (opensuse, redhat) ❌  - Not started yet, but in the queue for next releases.
+- dpkg (deepin) ❌ - Not started yet, but in the queue for next releases.
 
-❗ For Debian users we deploy in each chipmunk release the .deb package. Publishing this .deb package to the official apt repository is on review by the debian community and still ongoing. 
+ 
+❗ For Debian users we deploy in each [Chipmunk](https://github.com/esrlabs/chipmunk/releases) release the .deb package. Publishing this .deb package to the official apt repository is on review by the debian community and still ongoing. 
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@alfr1337](https://github.com/alfr1337) - Initial work
