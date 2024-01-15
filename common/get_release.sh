@@ -11,11 +11,7 @@ echo "Packaging chipmunk version - '$version'"
 chipmunk_package_url="https://github.com/esrlabs/chipmunk/releases/download/$version/chipmunk@$version-linux-portable.tgz"
 
 # Folder structure
-output_dir=$(pwd)
-source_dir=$(dirname "$0")
 working_dir=/tmp/chipmunk_work_dir
-
-echo "source_dir = '$source_dir'"
 
 # Create an empty working directory
 sudo rm -rf "$working_dir"

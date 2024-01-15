@@ -96,6 +96,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 3. **Make Changes**: Make your desired changes, improvements, or bug fixes.
 
+4. To add support for currently unsupported linux platforms, kindly follow the current folder structure. Any common scripts used across platforms to be added to the folder common. The workflow has been setup so that the chipmunk tar package for linux is already made available in /tmp/chipmunk_work_dir.
+
 4. **Create Pull Request**: Once you're satisfied with your changes, create a pull request to submit them for review.
 
 

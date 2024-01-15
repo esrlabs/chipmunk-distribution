@@ -5,7 +5,7 @@ Release:	0
 Summary:	chipmunk is a fast logfile viewer that can deal with huge logfiles (>10 GB)
 License:	https://github.com/esrlabs/chipmunk/blob/master/LICENSE.txt
 URL:		https://github.com/esrlabs/chipmunk
-Source0:	%{name}@%{version}-linux-portable.tgz
+Source0:	%{name}@%{version}-linux-portable.tar.gz
 BuildArch:	x86_64
 
 %description
@@ -15,7 +15,7 @@ chipmunk is a fast logfile viewer that can deal with huge logfiles (>10 GB). It 
 ##%setup -n %{name}-%{version}.linux
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 #mkdir -p $RPM_BUILD_ROOT/
-tar -xvzf %{_topdir}/SOURCES/*.tgz -C %{_topdir}/BUILD
+tar -xvzf %{_topdir}/SOURCES/*.tar.gz -C %{_topdir}/BUILD
 
 %install
 mkdir -p -m777 $RPM_BUILD_ROOT%{_bindir}
