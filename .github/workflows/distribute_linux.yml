@@ -57,7 +57,7 @@ jobs:
           repo_name: esrlabs/chipmunk
           repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
           file: ./chipmunk*.{rpm,deb}
-          tag: dummy-3.10.3
+          tag: ${{ github.ref_name }}
           overwrite: true
           file_glob: true
 
