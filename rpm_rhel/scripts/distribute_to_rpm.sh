@@ -3,31 +3,33 @@ set -eux
 
 sudo apt-get install rpm
 
-url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
-response=$(curl -s -L -I $url_chipmunk)
-realTagUrl=$(echo "$response" | grep -i "location" | awk -F' ' '{print $2}')
-version=$(echo "$realTagUrl" | awk -F'/' '{print $NF}' | sed 's/v//' | sed 's/\r$//')
+if [ -z "$1" ]
+then
+echo "Version number unavailable, exiting."
+exit 1
+else
+version="$1"
+fi
 
 echo "Packaging chipmunk version - '$version'"
-chipmunk_package_url="https://github.com/esrlabs/chipmunk/releases/download/$version/chipmunk@$version-linux-portable.tgz"
+chipmunk_package="chipmunk@$version-linux-portable.tar.gz"
 
 # Folder structure
 output_dir=$(pwd)
-working_dir=/tmp/chipmunk_rpm_work_dir
+working_dir=/tmp/chipmunk_work_dir
 
 echo "output_dir = '$output_dir'"
 
 # Create an empty working directory for rpmbuild
-sudo rm -rf "$working_dir"
 mkdir -p "$working_dir"/{BUILD,SOURCES,SPECS,RPMS,SRPMS}
 
 # Store the source tar in SOURCES folder
-cd "$working_dir/SOURCES"
-wget $chipmunk_package_url
+cd "$working_dir"
+ls -la
+cp "$chipmunk_package" "$working_dir/SOURCES"
 
-if [ ! -f $working_dir/SOURCES/chipmunk@$version-linux-portable.tgz ]; then
+if [ ! -f $working_dir/SOURCES/$chipmunk_package ]; then
         echo "Unable to download latest release tar. Exiting rpm package creation!"
-        sudo rm -rf "$working_dir"
         exit 1
 fi
 
@@ -40,7 +42,6 @@ rpmbuild --define "_topdir $working_dir" -ba chipmunk.spec
 
 # Copy all the created files and clean up
 cp "$working_dir"/RPMS/x86_64/* "$output_dir"
-sudo rm -rf "$working_dir"
 
 # Rename package to match chipmunk assets naming convention
 cd "$output_dir"
