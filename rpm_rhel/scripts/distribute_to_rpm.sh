@@ -5,10 +5,18 @@ sudo apt-get install rpm
 
 if [ -z "$1" ]
 then
-echo "Version number unavailable, exiting."
+echo "Latest version number unavailable, exiting."
 exit 1
 else
 version="$1"
+fi
+
+if [ -z "$2" ]
+then
+echo "Tag number unavailable, exiting."
+exit 1
+else
+tag="$2"
 fi
 
 echo "Packaging chipmunk version - '$version'"
@@ -45,4 +53,4 @@ cp "$working_dir"/RPMS/x86_64/* "$output_dir"
 
 # Rename package to match chipmunk assets naming convention
 cd "$output_dir"
-mv chipmunk-$version-0.$(arch).rpm chipmunk@$version-linux-$(arch).rpm
+mv chipmunk-$version-0.$(arch).rpm chipmunk@$tag-linux-$(arch).rpm

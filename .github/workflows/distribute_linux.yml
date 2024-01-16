@@ -1,9 +1,10 @@
 name: Distribute deb and RPM package for Chipmunk
 run-name: chipmunk rpm/deb package creation and publish to repository
-on:
-  push:
-    tags:
-      - "*"
+on: [workflow_dispatch]
+# on:
+#   push:
+#     tags:
+#       - "*"
 
 jobs:
   build_x86_64:
@@ -23,7 +24,7 @@ jobs:
 # add a step for building the required package for another unsupported linux platform like the step below
       - name: Build RPM package
         run: |
-          bash rpm_rhel/scripts/distribute_to_rpm.sh ${{env.VERSION}}
+          bash rpm_rhel/scripts/distribute_to_rpm.sh ${{env.VERSION}} ${{ github.ref_name }}
 
       - name: Prepare environment
         id: prepare
