@@ -53,9 +53,7 @@ else
     echo "Destination folder: $destination_folder"
 fi
 
-ls -l
-
-# Move the generated files to the destination folder and rename them
+# Rename package to match chipmunk assets naming convention
 for file in ../chipmunk_*_amd64.deb; do
     if [ -e "$file" ]; then
         new_name=chipmunk@$version-linux-x86_64.deb
@@ -63,5 +61,6 @@ for file in ../chipmunk_*_amd64.deb; do
     fi
 done
 
- cd $destination_folder
- ls -l
+# Verify renamed file
+cd $destination_folder
+ls -l
