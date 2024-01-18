@@ -21,8 +21,10 @@ ls -la
 cp  ../aur/PKGBUILD .
 cp  ../aur/.SRCINFO .
 ls -la
-git config --global user.email "$GIT_EMAIL"
-git config --global user.name "$GIT_USER"
+
+
+git config --global user.email "alexandru.frincu@accenture.com"
+git config --global user.name "alfr"
 
 
 git add PKGBUILD .SRCINFO
