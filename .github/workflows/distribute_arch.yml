@@ -81,16 +81,6 @@ jobs:
         run: |
           ls -l
           bash aur/scripts/publish.sh ${{env.VERSION}} "$REMOTE" "$GIT_EMAIL" "$GIT_USER"
-          git config --global user.email "$GIT_EMAIL"
-          git config --global user.name "$GIT_USER"
-
-
-          git add PKGBUILD .SRCINFO
-
-          git status
-
-          git commit -m "Chipmunk release $VERSION"
-          git log
         env:
             GIT_EMAIL: ${{secrets.GIT_EMAIL}}
             GIT_USER: ${{secrets.GIT_USER}}
