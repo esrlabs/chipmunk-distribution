@@ -1,12 +1,14 @@
 #!/bin/bash
 
 set -e  # Exit on error
+
 VERSION="$1"
+REMOTE="$2"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
-GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone "ssh://aur@aur.archlinux.org/cmonk.git"
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone $REMOTE
 
 cd cmonk
 
@@ -17,9 +19,6 @@ ls -la
 cp  ../aur/PKGBUILD .
 cp  ../aur/.SRCINFO .
 ls -la
-
-cat PKGBUILD
-cat .SRCINFO
 
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
