@@ -2,13 +2,10 @@
 
 set -eux
 
-# url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
-
-url_chipmunk='https://github.com/esrlabs/chipmunk/releases/tag/3.10.5'
-
+url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
 response=$(curl -s -L -I $url_chipmunk)
 realTagUrl=$(echo "$response" | grep -i "location" | awk -F' ' '{print $2}')
-version="3.10.5"
+version=$(echo "$realTagUrl" | awk -F'/' '{print $NF}' | sed 's/v//' | sed 's/\r$//')
 
 echo "Packaging chipmunk version - '$version'"
 chipmunk_package_url="https://github.com/esrlabs/chipmunk/releases/download/$version/chipmunk@$version-linux-portable.tgz"

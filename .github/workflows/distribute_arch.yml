@@ -83,7 +83,7 @@ jobs:
           bash aur/scripts/publish.sh ${{env.VERSION}} "$REMOTE"
         env:
             GIT_EMAIL: ${{secrets.GIT_EMAIL}}
-            GIT_NAME: ${{secrets.GIT_NAME}}
+            GIT_USER: ${{secrets.GIT_USER}}
             REMOTE: ${{secrets.AUR_REMOTE}}
             
 
