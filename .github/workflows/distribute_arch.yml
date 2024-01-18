@@ -1,0 +1,89 @@
+name: Distribute Chipmunk on AUR/Arch-linux
+run-name: chipmunk archlinux package creation and publish to AUR repository
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+      options: --privileged
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+
+# preparing envinronment steps 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies on container    
+        run: |
+          pacman -Sy --noconfirm fakeroot binutils sudo wget openssh 
+          pacman -Sy --noconfirm gtk3 alsa-lib libdrm cups git
+         
+      - name: Get release version
+        run: |
+          bash apt/scripts/get_release.sh
+          echo ${{env.VERSION}}
+       
+      - name: Set build directory ownership
+        run:  |
+          chown -R nobody:nobody .
+      
+      - name: Update package version and sha256sums
+        run: |
+          cd aur
+          sed -i "s/pkgver=.*$/pkgver=${{env.VERSION}}/" PKGBUILD
+          cat PKGBUILD
+          sudo -u nobody makepkg -g >> PKGBUILD
+
+# creating package steps
+      - name: Build package
+        run: |
+              pwd
+              ls -la
+              cd aur 
+              sudo -u nobody makepkg
+              sudo -u nobody makepkg --printsrcinfo > .SRCINFO
+
+      - name: List generated files
+        run: |
+              cd aur
+              ls -la
+
+# publishing steps      
+      - name: List release tag name
+        run: |
+            echo ${{ github.ref_name }}
+      
+      - name: Configure SSH keys
+        run: |
+            mkdir ~/.ssh
+            echo -e "Host aur.archlinux.org\n\tIdentityFile ~/.ssh/id_rsa\n\tUser aur" >> ~/.ssh/config
+            echo -e "$PRIVATE_SSH_KEY" >> ~/.ssh/id_rsa
+            echo -e "$PUBLIC_SSH_KEY" >> ~/.ssh/id_rsa.pub
+            chmod 400 ~/.ssh/id_rsa.pub
+            chmod 400 ~/.ssh/id_rsa  
+
+            
+            echo -e "$PUBLIC_SSH_KEY" >> ~/.ssh/authorized_keys
+            cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+            ls -l ~/.ssh/
+        env:
+            PRIVATE_SSH_KEY: ${{secrets.ARCH_SSH_PRIVATE_KEY}}
+            PUBLIC_SSH_KEY:  ${{secrets.ARCH_SSH_PUBLIC_KEY}}
+
+      - name: Publish release
+        run: |
+          ls -l
+          bash aur/scripts/publish.sh ${{env.VERSION}}
+        env:
+            GIT_EMAIL: ${{secrets.GIT_EMAIL}}
+            GIT_NAME: ${{secrets.GIT_NAME}}
+            REMOTE: ${{secrets.AUR_REMOTE}}
+            
+
+
+
+      
+      
