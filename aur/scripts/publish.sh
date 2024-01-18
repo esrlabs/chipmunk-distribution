@@ -22,6 +22,8 @@ git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
 git add PKGBUILD .SRCINFO
 
+git status
+
 # git commit -m "Chipmunk release $VERSION"
 # git push origin master
 
