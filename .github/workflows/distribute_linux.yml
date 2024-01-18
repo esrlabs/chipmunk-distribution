@@ -1,9 +1,6 @@
 name: Distribute deb and RPM package for Chipmunk
 run-name: chipmunk rpm/deb package creation and publish to repository
-on:
-  push:
-    tags:
-      - "*"
+on: [workflow_dispatch]
 
 jobs:
   build_x86_64:
@@ -35,31 +32,32 @@ jobs:
       - name: Build .deb package
         run: |
           sudo bash apt/scripts/build_deb_package.sh ../ ${{env.VERSION}}
+          ls -l
 
-# list the name of the package file that needs to be uploaded to chipmunk(for debugging purposes)
-      - name: list RPM package
-        working-directory: .
-        run: |
-          rm -rf /tmp/chipmunk_work_dir
-          echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
-          echo "DEB_FILE=$(find -type f -name '*.deb' -printf '%f\n')" >> $GITHUB_ENV
+# # list the name of the package file that needs to be uploaded to chipmunk(for debugging purposes)
+#       - name: list RPM package
+#         working-directory: .
+#         run: |
+#           rm -rf /tmp/chipmunk_work_dir
+#           echo "RPM_FILE=$(find -type f -name '*-x86_64.rpm' -printf '%f\n')" >> $GITHUB_ENV
+#           echo "DEB_FILE=$(find -type f -name '*.deb' -printf '%f\n')" >> $GITHUB_ENV
 
-      - name: list tag_name
-        run: |
-          echo ${{ github.ref_name }}
+#       - name: list tag_name
+#         run: |
+#           echo ${{ github.ref_name }}
 
-# upload the package file by adding the file type to the file glob pattern in the below step.
-# kindly ensure the package file is named as "chipmunk@version-platform-arch.extension"
-      - name: Upload RPM to chipmunk using overwrite functionality
-        id: upload_rpm
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_name: esrlabs/chipmunk
-          repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
-          file: ./chipmunk*.{rpm,deb}
-          tag: ${{ github.ref_name }}
-          overwrite: true
-          file_glob: true
+# # upload the package file by adding the file type to the file glob pattern in the below step.
+# # kindly ensure the package file is named as "chipmunk@version-platform-arch.extension"
+#       - name: Upload RPM to chipmunk using overwrite functionality
+#         id: upload_rpm
+#         uses: svenstaro/upload-release-action@v2
+#         with:
+#           repo_name: esrlabs/chipmunk
+#           repo_token: ${{ secrets.CHIPMUNK_TOKEN }}
+#           file: ./chipmunk*.{rpm,deb}
+#           tag: ${{ github.ref_name }}
+#           overwrite: true
+#           file_glob: true
 
   # build_arm64:
   #   runs-on: ubuntu-22.04
