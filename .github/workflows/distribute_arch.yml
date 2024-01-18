@@ -80,7 +80,7 @@ jobs:
       - name: Publish release
         run: |
           ls -l
-          bash aur/scripts/publish.sh ${{env.VERSION}}
+          bash aur/scripts/publish.sh ${{env.VERSION}} "$REMOTE"
         env:
             GIT_EMAIL: ${{secrets.GIT_EMAIL}}
             GIT_NAME: ${{secrets.GIT_NAME}}
