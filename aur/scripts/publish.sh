@@ -6,7 +6,7 @@ VERSION="$1"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
-GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone "$REMOTE"
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone "ssh://aur@aur.archlinux.org/cmonk.git"
 
 cd cmonk
 
