@@ -81,8 +81,8 @@ jobs:
         run: |
           ls -l
           bash aur/scripts/publish.sh ${{env.VERSION}} "$REMOTE" "$GIT_EMAIL" "$GIT_USER"
-          git config --global user.email $GIT_EMAIL
-          git config --global user.name $GIT_USER
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
 
 
           git add PKGBUILD .SRCINFO
