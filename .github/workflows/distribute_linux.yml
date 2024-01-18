@@ -1,10 +1,9 @@
 name: Distribute deb and RPM package for Chipmunk
 run-name: chipmunk rpm/deb package creation and publish to repository
-on: [workflow_dispatch]
-# on:
-#   push:
-#     tags:
-#       - "*"
+on:
+  push:
+    tags:
+      - "*"
 
 jobs:
   build_x86_64:
