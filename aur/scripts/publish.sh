@@ -23,13 +23,13 @@ ls -la
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_USER"
 
-git config --get user.email
-git config --get user.name
 
 git add PKGBUILD .SRCINFO
 
 git status
 
-# git commit -m "Chipmunk release $VERSION"
+git commit -m "Chipmunk release $VERSION"
+
+git log
 # git push origin master
 
