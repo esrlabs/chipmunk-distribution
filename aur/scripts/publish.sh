@@ -28,10 +28,10 @@ git config --global user.name "alfr"
 
 
 git add PKGBUILD .SRCINFO
-
 git status
 
 git commit -m "Chipmunk release $VERSION"
 git log
-# git push origin master
+
+git push origin master
 
