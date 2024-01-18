@@ -31,7 +31,7 @@ Chipmunk Distribution – a repository for packaging and distributing latest rel
 
 Thanks to GitHub Actions, we are able to bring you the latest releases packaged and ready for the official repositories.
 
-## General Workflow <a name = "workflows"></a>
+## 🌟 General Workflow <a name = "workflows"></a>
 
 ---
 
@@ -41,7 +41,7 @@ Thanks to GitHub Actions, we are able to bring you the latest releases packaged 
 
 1. **Windows**
 
-    For Windows package manager (Chocolatey), distribution was manually triggered and only done once. Chocolatey takes care of fetching latest version of chipmunk so we don't need to make any updates on release. Chocolatey package for chipmunk is already under review and once approved by the moderators, Chipmunk would be available on Chocolatey. To do - Update chocolatey package url once its published.
+    For Windows package manager (Chocolatey), distribution was manually triggered and only done once. Chocolatey takes care of fetching latest version of chipmunk so we don't need to make any updates on release.
 
 2. **MacOS**
 
@@ -82,7 +82,7 @@ Before you dive into contributing make sure you do the following:
    - Paste your copied token as the secret's value and save.
 
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## 🏁 Getting started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development.
 
 1. **Fork the Repository**: Click on the "Fork" button at the top right of this page to create your copy of the repository.
@@ -94,24 +94,33 @@ These instructions will get you a copy of the project up and running on your loc
     cd your-distribution-repo
     ```
 
-3. **Make Changes**: Make your desired changes, improvements, or bug fixes.
+3. **Add your changes**: Follow the repository tree and use the following structure when addding a new package:
+    
+    ```
+        ├───package_manager
+        │   ├───dir1
+        │   │   ├───patches
+        │   │   └───source
+        │   └───scripts
+    ```
 
-4. To add support for currently unsupported linux platforms, kindly follow the current folder structure. Any common scripts used across platforms to be added to the folder common. The workflow has been setup so that the chipmunk tar package for linux is already made available in /tmp/chipmunk_work_dir.
+4. **Use common resources**: common folder contain scripts which must be reused inside your logic when adding a new package.
 
-4. **Create Pull Request**: Once you're satisfied with your changes, create a pull request to submit them for review.
+5. **Update workflows**: In case of a new linux package manager update `.github/workflows/distribute_linux.yml`.
+
+6. **Create Pull Request**: Once you're satisfied with your changes, create a pull request to submit them for review.
+
 
 
 ## 🚀 Current State <a name = "current_state"></a>
 
-- pacman (arch, manjaro) ⛏️ - [@alfr1337](https://github.com/alfr1337)
+- pacman (arch) ✅ - [@alfr1337](https://github.com/alfr1337)
 - brew (mac) ✅ 
 - chocolatey (windows) ✅ -[@itsmesamster](https://github.com/itsmesamster) 
 - apt (ubuntu, debian) ⛏️ - [@alfr1337](https://github.com/alfr1337)
 - dnf (fedora) ⛏️ - [@itsmesamster](https://github.com/itsmesamster)
-- YaST (opensuse, redhat) ❌  - Not started yet, but in the queue for next releases.
-- dpkg (deepin) ❌ - Not started yet, but in the queue for next releases.
-
-❗ For Debian/RHEL/Fedora users, a .rpm/.deb package is released with each chipmunk release for easy installation. We are currently working on getting the said rpm package to be published on relevant package repositories.
+ 
+❗ For Debian users we deploy in each [Chipmunk](https://github.com/esrlabs/chipmunk/releases) release the .deb package. Publishing this .deb package to the official apt repository is on review by the debian community and still ongoing. 
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@alfr1337](https://github.com/alfr1337) - Initial work
