@@ -17,10 +17,10 @@ jobs:
           sudo apt-get install -y build-essential fakeroot devscripts debhelper dh-make git
           bash common/get_release.sh
 
-# add a step for building the required package for another unsupported linux platform like the step below
-      - name: Build RPM package
-        run: |
-          bash rpm_rhel/scripts/distribute_to_rpm.sh ${{env.VERSION}} ${{ github.ref_name }}
+# # add a step for building the required package for another unsupported linux platform like the step below
+#       - name: Build RPM package
+#         run: |
+#           bash rpm_rhel/scripts/distribute_to_rpm.sh ${{env.VERSION}} ${{ github.ref_name }}
 
       - name: Prepare environment
         id: prepare

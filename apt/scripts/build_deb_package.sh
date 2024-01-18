@@ -53,6 +53,8 @@ else
     echo "Destination folder: $destination_folder"
 fi
 
+ls -l
+
 # Move the generated files to the destination folder and rename them
 for file in ../chipmunk_*_amd64.*; do
     if [ -e "$file" ]; then
@@ -61,5 +63,5 @@ for file in ../chipmunk_*_amd64.*; do
     fi
 done
 
- cd $destination_folder"
+ cd $destination_folder
  ls -l
