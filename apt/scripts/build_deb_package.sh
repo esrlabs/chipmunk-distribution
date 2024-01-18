@@ -56,9 +56,9 @@ fi
 ls -l
 
 # Move the generated files to the destination folder and rename them
-for file in ../chipmunk_*_amd64.*; do
+for file in ../chipmunk_*_amd64.deb; do
     if [ -e "$file" ]; then
-        new_name=$(basename "$file" | sed 's/_amd64//')
+        new_name=chipmunk@$version-linux-x86_64.deb
         mv "$file" "$destination_folder/$new_name"
     fi
 done
