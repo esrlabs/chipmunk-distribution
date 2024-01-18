@@ -35,7 +35,6 @@ jobs:
       - name: Build .deb package
         run: |
           sudo bash apt/scripts/build_deb_package.sh ../ ${{env.VERSION}}
-          ls -l
 
 # list the name of the package file that needs to be uploaded to chipmunk(for debugging purposes)
       - name: list RPM package
