@@ -2,7 +2,7 @@
 
 set -eux
 
-url_chipmunk='https://github.com/esrlabs/chipmunk/releases/latest'
+url_chipmunk='https://github.com/esrlabs/chipmunk/releases/tag/3.10.5'
 response=$(curl -s -L -I $url_chipmunk)
 realTagUrl=$(echo "$response" | grep -i "location" | awk -F' ' '{print $2}')
 version=$(echo "$realTagUrl" | awk -F'/' '{print $NF}' | sed 's/v//' | sed 's/\r$//')
