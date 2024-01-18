@@ -1,10 +1,9 @@
 name: Distribute Chipmunk on AUR/Arch-linux
 run-name: chipmunk archlinux package creation and publish to AUR repository
-# on:
-#   push:
-#     tags:
-#       - "*"
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
