@@ -27,7 +27,7 @@ jobs:
          
       - name: Get release version
         run: |
-          bash apt/scripts/get_release.sh
+          bash common/get_release.sh
           echo ${{env.VERSION}}
        
       - name: Set build directory ownership
