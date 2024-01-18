@@ -4,6 +4,8 @@ set -e  # Exit on error
 
 VERSION="$1"
 REMOTE="$2"
+GIT_EMAIL="$3"
+GIT_USER="$4"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
@@ -20,8 +22,8 @@ cp  ../aur/PKGBUILD .
 cp  ../aur/.SRCINFO .
 ls -la
 
-git config --global user.email "$GIT_EMAIL"
-git config --global user.name "$GIT_USER"
+git config --global user.email $GIT_EMAIL
+git config --global user.name $GIT_USER
 
 
 git add PKGBUILD .SRCINFO
