@@ -26,7 +26,7 @@ jobs:
          
       - name: Get release version
         run: |
-          bash common/get_release.sh
+          bash common/get_release.sh ${{github.ref_name}}
           echo ${{env.VERSION}}
        
       - name: Set build directory ownership
