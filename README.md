@@ -65,9 +65,9 @@ Thanks to GitHub Actions, we are able to bring you the latest releases packaged 
 
     To implement this structure we are wrapping this steps in scripts (bash, shell, make or python).  
 
-    Each workflow is automatically triggered by the release workflow from [chipmunk](https://github.com/esrlabs/chipmunk/blob/master/.github/workflows/release.yml). 
-
-    Inside the release workflow a release tag is pushed to chipmunk-distribution. Each linux workflow will be triggered and will proceed with building the packages.   
+    Linux workflow is automatically triggered by the release workflow from [chipmunk](https://github.com/esrlabs/chipmunk/blob/master/.github/workflows/release.yml) which pushes tag to [chipmunk-distribution](https://github.com/esrlabs/chipmunk-distribution/blob/master/.github/workflows/release.yml).
+    
+    ❗ Arch Linux package has it's own worflow and is triggered by dfferent tag then the other linux packages. [chipmunk](https://github.com/esrlabs/chipmunk/blob/master/.github/workflows/release.yml) pushes special tag "arch-x.x.x" (arch folowed by version).
 
 
 ### Prerequisites
