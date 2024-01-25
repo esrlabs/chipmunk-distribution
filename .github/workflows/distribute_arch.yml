@@ -3,7 +3,7 @@ run-name: chipmunk archlinux package creation and publish to AUR repository
 on:
   push:
     tags:
-      - "*"
+      - "arch-*"
 
 jobs:
   build:
