@@ -32,9 +32,10 @@ jobs:
         env:
           TAR_FILE: ${{ env.TAR_FILE }}
 
-      - name: Build .deb package
-        run: |
-          sudo bash apt/scripts/build_deb_package.sh ../ ${{github.ref_name}}
+# Commenting out .deb package build until https://github.com/esrlabs/chipmunk/issues/2048 is resolved
+      # - name: Build .deb package
+      #   run: |
+      #     sudo bash apt/scripts/build_deb_package.sh ../ ${{github.ref_name}}
 
 # list the name of the package file that needs to be uploaded to chipmunk(for debugging purposes)
       - name: list RPM package
