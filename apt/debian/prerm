@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+# Remove symbolic link
+if [ -L /usr/bin/chipmunk ]; then
+    rm -f /usr/bin/chipmunk
+fi
+
+exit 0

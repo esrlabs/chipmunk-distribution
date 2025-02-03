@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+# Ensure correct permissions for chrome-sandbox
+if [ -f /usr/lib/chipmunk/chipmunk/chrome-sandbox ]; then
+    chown root:root /usr/lib/chipmunk/chipmunk/chrome-sandbox
+    chmod 4755 /usr/lib/chipmunk/chipmunk/chrome-sandbox
+fi
+
+exit 0
