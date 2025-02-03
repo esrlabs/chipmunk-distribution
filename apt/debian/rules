@@ -3,20 +3,27 @@
 %:
 	dh $@
 
+# Disable dh_dwz to avoid errors with missing debug sections
+override_dh_dwz:
+	# Skip dwz optimization
+
 override_dh_auto_install:
-	dh_auto_install 
-	
+	dh_auto_install
+
 	# Set up the directory structure
 	mkdir -p debian/chipmunk/usr/bin
 	mkdir -p debian/chipmunk/usr/lib/chipmunk
-	
-	pwd
-	ls -l
 
 	# Copy chipmunk release
 	cp -r /tmp/chipmunk_work_dir/chipmunk debian/chipmunk/usr/lib/chipmunk
+	chmod 755 debian/chipmunk/usr/lib/chipmunk/chipmunk/chipmunk
 
-	# Create a sym link
-	ln -s /usr/lib/chipmunk/chipmunk /usr/bin/chipmunk
+	# Ensure chrome-sandbox has correct ownership and permissions
+	chmod 4755 debian/chipmunk/usr/lib/chipmunk/chipmunk/chrome-sandbox
+	chown root:root debian/chipmunk/usr/lib/chipmunk/chipmunk/chrome-sandbox
 
+	# Create a symbolic link in /usr/bin
+	ln -sf ../lib/chipmunk/chipmunk/chipmunk debian/chipmunk/usr/bin/chipmunk
 
+override_dh_fixperms:
+	dh_fixperms
