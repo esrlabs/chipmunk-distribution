@@ -7,12 +7,22 @@
 override_dh_dwz:
 	# Skip dwz optimization
 
+# Skip stripping because binaries are prebuilt
+override_dh_strip:
+	true
+
+# Skip shared library dependency checks for prebuilt binaries
+override_dh_shlibdeps:
+	# Do nothing
+	true
+
 override_dh_auto_install:
 	dh_auto_install
 
 	# Set up the directory structure
 	mkdir -p debian/chipmunk/usr/bin
 	mkdir -p debian/chipmunk/usr/lib/chipmunk
+	mkdir -p debian/chipmunk/etc/apparmor.d
 
 	# Copy chipmunk release
 	cp -r /tmp/chipmunk_work_dir/chipmunk debian/chipmunk/usr/lib/chipmunk

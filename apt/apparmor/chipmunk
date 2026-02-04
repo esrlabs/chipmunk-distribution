@@ -1,0 +1,6 @@
+# AppArmor profile for Chipmunk
+# Required for Ubuntu 24.04+ user namespace restrictions
+
+profile chipmunk flags=(unconfined) {
+    userns,
+}

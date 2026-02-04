@@ -1,10 +1,19 @@
 #!/bin/sh
 set -e
 
+APPARMOR_PROFILE="/etc/apparmor.d/chipmunk"
+
 # Ensure correct permissions for chrome-sandbox
 if [ -f /usr/lib/chipmunk/chipmunk/chrome-sandbox ]; then
     chown root:root /usr/lib/chipmunk/chipmunk/chrome-sandbox
     chmod 4755 /usr/lib/chipmunk/chipmunk/chrome-sandbox
+fi
+
+# Load AppArmor profile if AppArmor is enabled
+if command -v apparmor_parser >/dev/null 2>&1; then
+    if [ -f "$APPARMOR_PROFILE" ]; then
+        apparmor_parser -r "$APPARMOR_PROFILE" || true
+    fi
 fi
 
 exit 0

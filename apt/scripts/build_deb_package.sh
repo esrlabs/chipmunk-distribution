@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export DH_SHLIBDEPS_SKIP=1
 set -eux
 
 # Check if the script is being run with sudo
@@ -49,15 +50,18 @@ dpkg-buildpackage -b
 if [ ! -d "$destination_folder" ]; then
     echo "Creating destination folder: $destination_folder"
     mkdir -p "$destination_folder"
+    chmod 755 "$destination_folder"
 else
     echo "Destination folder: $destination_folder"
 fi
 
 # Rename package to match chipmunk assets naming convention
-for file in ../chipmunk_*_amd64.deb; do
+arch=$(dpkg-architecture -qDEB_BUILD_ARCH)
+for file in ../chipmunk_*_"$arch".deb; do
     if [ -e "$file" ]; then
-        new_name=chipmunk@$version-linux-x86_64.deb
-        mv "$file" "$destination_folder/$new_name"
+        new_name=chipmunk@$version-linux-$arch.deb
+        install -m 644 "$file" "$destination_folder/$new_name"
+        rm -f "$file"
     fi
 done
 
